@@ -10,7 +10,10 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "").split(",").map((o) => o.trim());
+const allowedOrigins = (process.env.CORS_ORIGIN || "")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
 app.use(cors({ origin: allowedOrigins.length ? allowedOrigins : "*" }));
 app.use(express.json({ limit: "2mb" }));
 
